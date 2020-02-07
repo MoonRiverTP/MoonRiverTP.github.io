@@ -1,0 +1,206 @@
+<!-- Moon River -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Moon Rivers Wire Generator</title>
+        <link rel="stylesheet" type="text/css" href="template.css" />
+	   <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+	    <script type="text/javascript" src=""></script>
+    </head>
+    <body>
+
+        <div class="content">
+            <div id="header">
+                <div id="leftLinks">
+                    <a href="home.html">Home</a>
+                    |
+                    <a href="">Blank</a>
+                    |
+                    <a href="">Blank</a>
+                    |
+                    <a href="">Blank</a>
+                </div><!-- End of leftLinks -->
+
+                <div id="rightLinks">
+                    <a href="">Log-in</a>
+                    |
+                    <a href="">Sign-up</a>
+                </div><!-- End of rightLinks -->
+            </div><!-- End of header -->
+
+            <div id="header2">
+                <a href="home.html" id="logo">
+                    <img id="desktop" src="" alt="Logo">
+                    <img id="mobile" src="" alt="Logo">
+                </a>
+                <div id="h2Links">
+                    <a href="">Blank</a>
+                    |
+                    <a href="">Blank</a>
+                    |
+                    <a href="">Blank</a>
+                </div><!-- End of h2Links -->
+            </div><!-- End of header2 -->
+
+
+
+            <div id="content">
+
+               <h1>Wire Generator</h1>
+               <div id="inputarea">
+                  <form id="wireform">
+                     <h3>Team 1 name: </h3><input size="35" type="text" id="t1n" placeholder="Team Name, ex: What can you Dinos">
+                     <br>
+                     <h3>Team 1 Abbr: </h3><input size="35" type="text" id="t1a" placeholder="Team Abbreviation, ex: DNO">
+                     <br>
+                     <br>
+                     <h3>Team 2 name: </h3><input size="35" type="text" id="t2n" placeholder="Team Name, ex: Manipulation Station">
+                     <br>
+                     <h3>Team 2 Abbr: </h3><input size="35" type="text" id="t2a" placeholder="Team Abbreviation, ex: NIP">
+                     <br>
+                     <br>
+                     <br>
+                     <h3>How many games were played?</h3> (1 game = two halfs)
+                     <select id="gamesplayed">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                     </select>
+                     <br>
+                     <h3>Check for playoff format</h3> (1 game = 1 half)<input type="checkbox" name="playoffs" value="playoffs">
+                     <br><br>
+                     <h3>Stream Link: </h3><input size="20" type="text" id="slink">
+                     <h3>Streamer name: </h3><input size="20" type="text" id="slink">
+                     <br>
+                     <br>
+                     <hr>
+                     <div id=g1>
+                        <h2>Game 1</h2>
+                        <h3 style="margin-left :1em;">Map: </h3><input size="15" type="text" id="g1m">
+                        <br>
+                        <div id="h1">
+                           <h3 style="margin-left :1em;">Half 1</h3>
+                           <br>
+                           <h4 style="margin-left :2em;">Team 1 score </h4><input size="5" type="text" id="t1g1h1"><br>
+                           <h4 style="margin-left :2em;">Team 2 score </h4><input size="5" type="text" id="t2g1h1"><br>
+                           <h4 style="margin-left :2em;">Link to tagpro.eu </h4><input type="text" id="g1h1eu"><br>
+                           <br>
+                        </div>
+                        <div id="h2">
+                           <h3 style="margin-left :1em;">Half 2</h3>
+                           <br>
+                           <h4 style="margin-left :2em;">Team 1 score </h4><input size="5" type="text" id="t1g1h2"><br>
+                           <h4 style="margin-left :2em;">Team 2 score </h4><input size="5" type="text" id="t2g1h2"><br>
+                           <h4 style="margin-left :2em;">Link to tagpro.eu </h4><input type="text" id="g1h2eu"><br>
+                        </div>
+                        <br><h4 style="margin-left :1em;">Overtime?</h4><input type="checkbox" name="g1ot" value="g1ot">
+                        <br>
+                        <div id="otgame">
+                           <h3 style="margin-left:1em;">Overtime Game</h3><br>
+                           <h4 style="margin-left :2em;">Team 1 score </h4><input size="5" type="text" id="t1g1ot"><br>
+                           <h4 style="margin-left :2em;">Team 2 score </h4><input size="5" type="text" id="t2g1ot"><br>
+                           <h4 style="margin-left :2em;">Link to tagpro.eu </h4><input type="text" id="g1oteu"><br><br>
+                        </div>
+                     </div>
+                     <hr>
+                     <div id=g2>
+                        <h2>Game 2</h2>
+                        <h3 style="margin-left :1em;">Map: </h3><input size="15" type="text" id="g2m">
+                        <br>
+                        <div id="h1">
+                           <h3 style="margin-left :1em;">Half 1</h3>
+                           <br>
+                           <h4 style="margin-left :2em;">Team 1 score </h4><input size="5" type="text" id="t1g2h1"><br>
+                           <h4 style="margin-left :2em;">Team 2 score </h4><input size="5" type="text" id="t2g2h1"><br>
+                           <h4 style="margin-left :2em;">Link to tagpro.eu </h4><input type="text" id="g2h1eu"><br>
+                           <br>
+                        </div>
+                        <div id="h2">
+                           <h3 style="margin-left :1em;">Half 2</h3>
+                           <br>
+                           <h4 style="margin-left :2em;">Team 1 score </h4><input size="5" type="text" id="t1g2h2"><br>
+                           <h4 style="margin-left :2em;">Team 2 score </h4><input size="5" type="text" id="t2g2h2"><br>
+                           <h4 style="margin-left :2em;">Link to tagpro.eu </h4><input type="text" id="g2h2eu"><br>
+                        </div>
+                        <br><h4 style="margin-left :1em;">Overtime?</h4><input type="checkbox" name="g2ot" value="g2ot">
+                        <br>
+                        <div id="otgame">
+                           <h3 style="margin-left:1em;">Overtime Game</h3><br>
+                           <h4 style="margin-left :2em;">Team 1 score </h4><input size="5" type="text" id="t1g2ot"><br>
+                           <h4 style="margin-left :2em;">Team 2 score </h4><input size="5" type="text" id="t2g2ot"><br>
+                           <h4 style="margin-left :2em;">Link to tagpro.eu </h4><input type="text" id="g2oteu"><br><br>
+                        </div>
+                     </div>
+                     <hr>
+                     <input type="button" onclick="generate();" value="Generate Wire!" id="buttooon">
+                  </form>
+               </div><!--end of input area div-->
+               <br>
+               <div id="outputarea">
+                  <textarea name="generated" rows="20" cols="100" id="outputc"></textarea>
+                  <img id="mbbg" src="mobilebackground.jpg">
+                  <canvas id="mobilepic" width="264" height="363" style="border:1px solid white;">
+                     <script>
+                        var c = document.getElementById("mobilepic");
+                        var ctx = c.getContext("2d");
+                        var img = document.getElementById("mbbg");
+
+                        ctx.font = "30px 'Raleway', sans-serif";
+                        ctx.drawImage(img,0,0);
+                        ctx.strokeStyle = "white";
+                        ctx.strokeText("DNO vs NIP", 40, 40);
+                        ctx.fillStyle="white";
+                        ctx.font = "15px 'Raleway', sans-serif";
+
+                        ctx.fillText("Game 1: Wormy",20,80);
+                        ctx.fillText("Half 1: ",35,100);
+                        ctx.fillText("DNO: 5", 90, 100);
+                        ctx.strokeText("NIP: 7", 150,100);
+                        ctx.fillText("Half 2:",35,120);
+                        ctx.strokeText("DNO: 4",90,120);
+                        ctx.fillText("NIP: 1", 150, 120);
+                        ctx.fillText("agg: ",50,138);
+                        ctx.strokeText("DNO: 9",90,138);
+                        ctx.fillText("8",184,138);
+
+                        ctx.fillText("Game 2: Cedar",20,160);
+                        ctx.fillText("Half 1: ",35,180);
+                        ctx.fillText("DNO: 0", 90, 180);
+                        ctx.strokeText("NIP: 5", 150,180);
+                        ctx.fillText("Half 2:",35,200);
+                        ctx.strokeText("DNO: 4",90,200);
+                        ctx.fillText("NIP: 1", 150, 200);
+                        ctx.fillText("agg: ",50,218);
+                        ctx.strokeText("NIP: 6",150,218);
+                        ctx.fillText("4",132,218);
+                        ctx.fillText("Match agg: ",30,238);
+                        ctx.fillText("13",125,238);
+                        ctx.fillText("14",175,238);
+                     </script>
+                  </canvas>
+               </div><!--end of output area div-->
+
+
+            </div>
+        </div>
+
+               <br><br><br><br>
+
+    <footer class="footer">
+		<div id="footerLinks">
+			<a href="">Blank</a>
+			|
+			<a href="">Blank</a>
+		</div><!-- End of footerLinks -->
+
+	</footer><!-- End of footer -->
+    </body>
+</html>
