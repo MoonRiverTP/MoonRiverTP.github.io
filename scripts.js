@@ -247,7 +247,7 @@ function generatePic(){
 	ctx.font = "30px 'Raleway', sans-serif";
 	ctx.drawImage(img,0,0);
 	ctx.strokeStyle = "white";
-	ctx.strokeText("DNO vs NIP", 40, 40);
+	ctx.strokeText(t1abr+" vs "+t2abr, 40, 40);
 	ctx.fillStyle="white";
 	ctx.font = "15px 'Raleway', sans-serif";
 
