@@ -238,101 +238,242 @@ function drawPic(){
 
 }
 function generatePic(){
-	c = document.getElementById("mobilepic");
-	var ctx = c.getContext("2d");
-	var img = document.getElementById("mbbg");
+	if(gamesP == 2){
+		c = document.getElementById("mobilepic");
+		var ctx = c.getContext("2d");
+		var img = document.getElementById("mbbg");
 
+		ctx.font = "30px 'Raleway', sans-serif";
+		ctx.drawImage(img,0,0);
+		ctx.strokeStyle = "white";
+		ctx.strokeText(t1abr+" vs "+t2abr, 40, 40);
+		ctx.fillStyle="white";
+		ctx.font = "15px 'Raleway', sans-serif";
 
-
-	ctx.font = "30px 'Raleway', sans-serif";
-	ctx.drawImage(img,0,0);
-	ctx.strokeStyle = "white";
-	ctx.strokeText(t1abr+" vs "+t2abr, 40, 40);
-	ctx.fillStyle="white";
-	ctx.font = "15px 'Raleway', sans-serif";
-
-	//GAme1
-	ctx.fillText("Game 1: "+g1mapname+"",20,80);
-	ctx.fillText("Half 1: ",35,100);
-	//g1half1
-	if(t1g1h1score > t2g1h1score){
-		ctx.strokeText(t1abr+": "+t1g1h1score+"", 90, 100);
-	}else{
-		ctx.fillText(t1abr+": "+t1g1h1score+"", 90, 100);
-	}
-	if(t2g1h1score > t1g1h1score){
-		ctx.strokeText(t2abr+": "+t2g1h1score+"", 150, 100);
-	}else{
-		ctx.fillText(t2abr+": "+t2g1h1score+"", 150, 100);
-	}
-	//g1half2
-	ctx.fillText("Half 2:",35,120);
-	if(t1g1h2score > t2g1h2score){
-		ctx.strokeText(t1abr+": "+t1g1h2score+"", 90, 120);
-	}else{
-		ctx.fillText(t1abr+": "+t1g1h2score+"", 90, 120);
-	}
-	if(t2g1h2score > t1g1h2score){
-		ctx.strokeText(t2abr+": "+t2g1h2score+"", 150, 120);
-	}else{
-		ctx.fillText(t2abr+": "+t2g1h2score+"", 150, 120);
-	}
-	//g1OT
-	if(document.getElementById("g1ot").checked){
-		ctx.fillText("OT: ",55,138);
-		if(t1g1otscore > t2g1otscore){
-			ctx.strokeText(t1abr+": "+t1g1otscore+"",90,138);
-			ctx.fillText(t2g1otscore+"",183,138);
+		//GAme1
+		ctx.fillText("Game 1: "+g1mapname+"",20,80);
+		ctx.fillText("Half 1: ",35,100);
+		//g1half1
+		if(t1g1h1score > t2g1h1score){
+			ctx.strokeText(t1abr+": "+t1g1h1score+"", 90, 100);
 		}else{
-			ctx.fillText(t1g1otscore+"",133,138);
-			ctx.strokeText(t2abr+": "+t2g1otscore+"",150,138);
+			ctx.fillText(t1abr+": "+t1g1h1score+"", 90, 100);
 		}
-	}
-	ctx.fillText("agg: ",47,154);
-	ctx.fillText(t1abr+": "+g1t1agg+"",90,154);
-	ctx.fillText(t2abr+": "+g1t2agg+"",150,154);
-	//end of game 1
-	//game2
-	ctx.fillText("Game 2: "+g2mapname+"",20,180);
-	ctx.fillText("Half 1: ",35,200);
-	//g2half1
-	if(t1g2h1score > t2g2h1score){
-		ctx.strokeText(t1abr+": "+t1g2h1score+"", 90, 200);
-	}else{
-		ctx.fillText(t1abr+": "+t1g2h1score+"", 90, 200);
-	}
-	if(t2g2h1score > t1g2h1score){
-		ctx.strokeText(t2abr+": "+t2g2h1score+"", 150, 200);
-	}else{
-		ctx.fillText(t2abr+": "+t2g2h1score+"", 150, 200);
-	}
-	//g2half2
-	ctx.fillText("Half 2:",35,220);
-	if(t1g2h2score > t2g2h2score){
-		ctx.strokeText(t1abr+": "+t1g2h2score+"", 90, 220);
-	}else{
-		ctx.fillText(t1abr+": "+t1g2h2score+"", 90, 220);
-	}
-	if(t2g2h2score > t1g2h2score){
-		ctx.strokeText(t2abr+": "+t2g2h2score+"", 150, 220);
-	}else{
-		ctx.fillText(t2abr+": "+t2g2h2score+"", 150, 220);
-	}
-	//g2OT
-	if(document.getElementById("g2ot").checked){
-		ctx.fillText("OT: ",55,238);
-		if(t1g2otscore > t2g2otscore){
-			ctx.strokeText(t1abr+": "+t1g2otscore+"",90,238);
-			ctx.fillText(t2g2otscore+"",183,238);
+		if(t2g1h1score > t1g1h1score){
+			ctx.strokeText(t2abr+": "+t2g1h1score+"", 150, 100);
 		}else{
-			ctx.fillText(t1g2otscore+"",133,238);
-			ctx.strokeText(t2abr+": "+t2g2otscore+"",150,238);
+			ctx.fillText(t2abr+": "+t2g1h1score+"", 150, 100);
 		}
+		//g1half2
+		ctx.fillText("Half 2:",35,120);
+		if(t1g1h2score > t2g1h2score){
+			ctx.strokeText(t1abr+": "+t1g1h2score+"", 90, 120);
+		}else{
+			ctx.fillText(t1abr+": "+t1g1h2score+"", 90, 120);
+		}
+		if(t2g1h2score > t1g1h2score){
+			ctx.strokeText(t2abr+": "+t2g1h2score+"", 150, 120);
+		}else{
+			ctx.fillText(t2abr+": "+t2g1h2score+"", 150, 120);
+		}
+		//g1OT
+		if(document.getElementById("g1ot").checked){
+			ctx.fillText("OT: ",55,138);
+			if(t1g1otscore > t2g1otscore){
+				ctx.strokeText(t1abr+": "+t1g1otscore+"",90,138);
+				ctx.fillText(t2g1otscore+"",183,138);
+			}else{
+				ctx.fillText(t1g1otscore+"",133,138);
+				ctx.strokeText(t2abr+": "+t2g1otscore+"",150,138);
+			}
+		}
+		ctx.fillText("agg: ",47,154);
+		ctx.fillText(t1abr+": "+g1t1agg+"",90,154);
+		ctx.fillText(t2abr+": "+g1t2agg+"",150,154);
+		//end of game 1
+		//game2
+		ctx.fillText("Game 2: "+g2mapname+"",20,180);
+		ctx.fillText("Half 1: ",35,200);
+		//g2half1
+		if(t1g2h1score > t2g2h1score){
+			ctx.strokeText(t1abr+": "+t1g2h1score+"", 90, 200);
+		}else{
+			ctx.fillText(t1abr+": "+t1g2h1score+"", 90, 200);
+		}
+		if(t2g2h1score > t1g2h1score){
+			ctx.strokeText(t2abr+": "+t2g2h1score+"", 150, 200);
+		}else{
+			ctx.fillText(t2abr+": "+t2g2h1score+"", 150, 200);
+		}
+		//g2half2
+		ctx.fillText("Half 2:",35,220);
+		if(t1g2h2score > t2g2h2score){
+			ctx.strokeText(t1abr+": "+t1g2h2score+"", 90, 220);
+		}else{
+			ctx.fillText(t1abr+": "+t1g2h2score+"", 90, 220);
+		}
+		if(t2g2h2score > t1g2h2score){
+			ctx.strokeText(t2abr+": "+t2g2h2score+"", 150, 220);
+		}else{
+			ctx.fillText(t2abr+": "+t2g2h2score+"", 150, 220);
+		}
+		//g2OT
+		if(document.getElementById("g2ot").checked){
+			ctx.fillText("OT: ",55,238);
+			if(t1g2otscore > t2g2otscore){
+				ctx.strokeText(t1abr+": "+t1g2otscore+"",90,238);
+				ctx.fillText(t2g2otscore+"",183,238);
+			}else{
+				ctx.fillText(t1g2otscore+"",133,238);
+				ctx.strokeText(t2abr+": "+t2g2otscore+"",150,238);
+			}
+		}
+		ctx.fillText("agg: ",47,254);
+		ctx.fillText(t1abr+": "+g2t1agg+"",90,254);
+		ctx.fillText(t2abr+": "+g2t2agg+"",150,254);
+		//end of game 2
+	}else if(gamesP == 3){
+		c = document.getElementById("mobilepic");
+		var ctx = c.getContext("2d");
+		var img = document.getElementById("mbbg");
+
+		ctx.font = "30px 'Raleway', sans-serif";
+		ctx.drawImage(img,0,0);
+		ctx.strokeStyle = "white";
+		ctx.strokeText(t1abr+" vs "+t2abr, 40, 40);
+		ctx.fillStyle="white";
+		ctx.font = "15px 'Raleway', sans-serif";
+
+		//GAme1
+		ctx.fillText("Game 1: "+g1mapname+"",20,80);
+		ctx.fillText("Half 1: ",35,100);
+		//g1half1
+		if(t1g1h1score > t2g1h1score){
+			ctx.strokeText(t1abr+": "+t1g1h1score+"", 90, 100);
+		}else{
+			ctx.fillText(t1abr+": "+t1g1h1score+"", 90, 100);
+		}
+		if(t2g1h1score > t1g1h1score){
+			ctx.strokeText(t2abr+": "+t2g1h1score+"", 150, 100);
+		}else{
+			ctx.fillText(t2abr+": "+t2g1h1score+"", 150, 100);
+		}
+		//g1half2
+		ctx.fillText("Half 2:",35,120);
+		if(t1g1h2score > t2g1h2score){
+			ctx.strokeText(t1abr+": "+t1g1h2score+"", 90, 120);
+		}else{
+			ctx.fillText(t1abr+": "+t1g1h2score+"", 90, 120);
+		}
+		if(t2g1h2score > t1g1h2score){
+			ctx.strokeText(t2abr+": "+t2g1h2score+"", 150, 120);
+		}else{
+			ctx.fillText(t2abr+": "+t2g1h2score+"", 150, 120);
+		}
+		//g1OT
+		if(document.getElementById("g1ot").checked){
+			ctx.fillText("OT: ",55,138);
+			if(t1g1otscore > t2g1otscore){
+				ctx.strokeText(t1abr+": "+t1g1otscore+"",90,138);
+				ctx.fillText(t2g1otscore+"",183,138);
+			}else{
+				ctx.fillText(t1g1otscore+"",133,138);
+				ctx.strokeText(t2abr+": "+t2g1otscore+"",150,138);
+			}
+		}
+		ctx.fillText("agg: ",47,154);
+		ctx.fillText(t1abr+": "+g1t1agg+"",90,154);
+		ctx.fillText(t2abr+": "+g1t2agg+"",150,154);
+		//end of game 1
+
+		//game2
+		ctx.fillText("Game 2: "+g2mapname+"",20,180);
+		ctx.fillText("Half 1: ",35,200);
+		//g2half1
+		if(t1g2h1score > t2g2h1score){
+			ctx.strokeText(t1abr+": "+t1g2h1score+"", 90, 200);
+		}else{
+			ctx.fillText(t1abr+": "+t1g2h1score+"", 90, 200);
+		}
+		if(t2g2h1score > t1g2h1score){
+			ctx.strokeText(t2abr+": "+t2g2h1score+"", 150, 200);
+		}else{
+			ctx.fillText(t2abr+": "+t2g2h1score+"", 150, 200);
+		}
+		//g2half2
+		ctx.fillText("Half 2:",35,220);
+		if(t1g2h2score > t2g2h2score){
+			ctx.strokeText(t1abr+": "+t1g2h2score+"", 90, 220);
+		}else{
+			ctx.fillText(t1abr+": "+t1g2h2score+"", 90, 220);
+		}
+		if(t2g2h2score > t1g2h2score){
+			ctx.strokeText(t2abr+": "+t2g2h2score+"", 150, 220);
+		}else{
+			ctx.fillText(t2abr+": "+t2g2h2score+"", 150, 220);
+		}
+		//g2OT
+		if(document.getElementById("g2ot").checked){
+			ctx.fillText("OT: ",55,238);
+			if(t1g2otscore > t2g2otscore){
+				ctx.strokeText(t1abr+": "+t1g2otscore+"",90,238);
+				ctx.fillText(t2g2otscore+"",183,238);
+			}else{
+				ctx.fillText(t1g2otscore+"",133,238);
+				ctx.strokeText(t2abr+": "+t2g2otscore+"",150,238);
+			}
+		}
+		ctx.fillText("agg: ",47,254);
+		ctx.fillText(t1abr+": "+g2t1agg+"",90,254);
+		ctx.fillText(t2abr+": "+g2t2agg+"",150,254);
+		//end of game 2
+
+		//game3
+		ctx.fillText("Game 3: "+g3mapname+"",20,280);
+		ctx.fillText("Half 1: ",35,300);
+		//g3half1
+		if(t1g3h1score > t2g3h1score){
+			ctx.strokeText(t1abr+": "+t1g3h1score+"", 90, 300);
+		}else{
+			ctx.fillText(t1abr+": "+t1g3h1score+"", 90, 300);
+		}
+		if(t2g3h1score > t1g3h1score){
+			ctx.strokeText(t2abr+": "+t2g3h1score+"", 150, 300);
+		}else{
+			ctx.fillText(t2abr+": "+t2g3h1score+"", 150, 300);
+		}
+		//g3half2
+		ctx.fillText("Half 2:",35,320);
+		if(t1g3h2score > t2g3h2score){
+			ctx.strokeText(t1abr+": "+t1g3h2score+"", 90, 320);
+		}else{
+			ctx.fillText(t1abr+": "+t1g3h2score+"", 90, 320);
+		}
+		if(t2g3h2score > t1g3h2score){
+			ctx.strokeText(t2abr+": "+t2g3h2score+"", 150, 320);
+		}else{
+			ctx.fillText(t2abr+": "+t2g3h2score+"", 150, 320);
+		}
+		//g3OT
+		if(document.getElementById("g3ot").checked){
+			ctx.fillText("OT: ",55,338);
+			if(t1g3otscore > t2g3otscore){
+				ctx.strokeText(t1abr+": "+t1g3otscore+"",90,338);
+				ctx.fillText(t2g3otscore+"",183,338);
+			}else{
+				ctx.fillText(t1g3otscore+"",133,338);
+				ctx.strokeText(t2abr+": "+t2g3otscore+"",150,338);
+			}
+		}
+		ctx.fillText("agg: ",47,354);
+		ctx.fillText(t1abr+": "+g3t1agg+"",90,354);
+		ctx.fillText(t2abr+": "+g3t2agg+"",150,354);
+		//end of game 2
+	}else if(gamesP == 7){
+		var can = document.getElementById("mobilepic");
+		can.height = 500;
 	}
-	ctx.fillText("agg: ",47,254);
-	ctx.fillText(t1abr+": "+g2t1agg+"",90,254);
-	ctx.fillText(t2abr+": "+g2t2agg+"",150,254);
-	//end of game 2
+
 
 }
 
