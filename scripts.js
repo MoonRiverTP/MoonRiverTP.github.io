@@ -862,7 +862,7 @@ function drawText(){
 		"\n:--|--:|--:|--:|--:|"+
 		"\n|"+t1abrg1+"|"+t1g1h1score+"|"+t1g1h2score+"|"+t1g1otscore+"|"+g1t1agg+"|"+
 		"\n|"+t2abrg1+"|"+t2g1h1score+"|"+t2g1h2score+"|"+t2g1otscore+"|"+g1t2agg+"|"+
-		"\n|**"+g2mapname+"**|[**G2H1**]("+g3h1eulink+")|[**G2H2**]("+g2h2eulink+")|"+g2otstring+"|***END***|"+
+		"\n|**"+g2mapname+"**|[**G2H1**]("+g2h1eulink+")|[**G2H2**]("+g2h2eulink+")|"+g2otstring+"|***END***|"+
 		"\n|"+t1abrg2+"|"+t1g2h1score+"|"+t1g2h2score+"|"+t1g2otscore+"|"+g2t1agg+"|"+
 		"\n|"+t2abrg2+"|"+t2g2h1score+"|"+t2g2h2score+"|"+t2g2otscore+"|"+g2t2agg+"|"+
 		"\n|**"+g3mapname+"**|[**G3H1**]("+g3h1eulink+")|[**G3H2**]("+g3h2eulink+")|"+g3otstring+"|***END***|"+
@@ -891,7 +891,7 @@ function drawText(){
 		"\n:--|--:|--:|--:|--:|"+
 		"\n|"+t1abrg1+"|"+t1g1h1score+"|"+t1g1h2score+"|"+t1g1otscore+"|"+g1t1agg+"|"+
 		"\n|"+t2abrg1+"|"+t2g1h1score+"|"+t2g1h2score+"|"+t2g1otscore+"|"+g1t2agg+"|"+
-		"\n|**"+g2mapname+"**|[**G2H1**]("+g3h1eulink+")|[**G2H2**]("+g2h2eulink+")|"+g2otstring+"|***END***|"+
+		"\n|**"+g2mapname+"**|[**G2H1**]("+g2h1eulink+")|[**G2H2**]("+g2h2eulink+")|"+g2otstring+"|***END***|"+
 		"\n|"+t1abrg2+"|"+t1g2h1score+"|"+t1g2h2score+"|"+t1g2otscore+"|"+g2t1agg+"|"+
 		"\n|"+t2abrg2+"|"+t2g2h1score+"|"+t2g2h2score+"|"+t2g2otscore+"|"+g2t2agg+"|"+
 		"\n|**"+g3mapname+"**|[**G3H1**]("+g3h1eulink+")|[**G3H2**]("+g3h2eulink+")|"+g3otstring+"|***END***|"+
