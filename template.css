@@ -169,6 +169,9 @@ Content Section
 #picarea{
 	display:none;
 }
+#picarea2{
+	display:none;
+}
 #buttooon{
 	font-size:25px;
 	text-align:center;
@@ -181,6 +184,9 @@ Content Section
 	background-color:lightgrey;
 }
 #mbbg{
+	display:none;
+}
+#mbbg2{
 	display:none;
 }
 /*

@@ -74,11 +74,17 @@
                         <label for="2g">2 Games</label>
                         <input id="3g" type="radio" name="g" value="3 Game">
                         <label for="3g">3 Games</label>
+                        <input id="4g" type="radio" name="g" value="4 Game">
+                        <label for="4g">4 Games</label>
+                        <input id="5g" type="radio" name="g" value="5 Game">
+                        <label for="5g">5 Games</label>
+                        <input id="6g" type="radio" name="g" value="6 Game">
+                        <label for="6g">6 Games</label>
                         <input id="7g" type="radio" name="g" value="7 Game">
                         <label for="7g">7 Games</label>
                      </div>
                      <br>
-                     <!--<h3>Check for playoff format</h3> (1 game = 1 half)<input id="playoffyes" type="checkbox" name="playoffs" value="playoffs">-->
+                     <h3>Check for playoff format</h3> (1 game = 1 half)<input id="playoffyes" type="checkbox" name="playoffs" value="playoffs">
                      <br><br>
                      <h3>Stream Link: </h3><input size="20" type="text" id="slink">
                      <h3>Streamer name: </h3><input size="20" type="text" id="sname">
@@ -296,13 +302,18 @@
                <br>
                <div id="outputarea">
                   <textarea name="generated" rows="20" cols="100" id="outputc"></textarea>
-                  <img id="mbbg" src="mobilebackground.jpg">
+                  <img crossorigin="anonymous" id="mbbg" src="mobilebackground.jpg">
+                  <img crossorigin="anonymous" id="mbbg2"src="mobilebackground2.jpg">
                   <div id="picarea">
                      <canvas id='mobilepic' width='264' height='363' style='border:1px solid white;''>
 
                      </canvas>
                   </div>
+                  <div id="picarea2">
+                     <canvas id='mobilepic2' width='660' height='363' style='border:1px solid white;''>
 
+                     </canvas>
+                  </div>
                </div><!--end of output area div-->
 
 
