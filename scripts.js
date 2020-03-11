@@ -2927,8 +2927,10 @@ function generateText(){
 
 	if(t1seriesagg2 > t2seriesagg2){
 		serieswint1abr = "**"+t1abr+"**";
+		serieswint2abr = t2abr;
 	}else{
 		serieswint2abr = "**"+t2abr+"**";
+		serieswint1abr = t1abr;
 	}
 
 	if(document.getElementById("g1ot").checked){
