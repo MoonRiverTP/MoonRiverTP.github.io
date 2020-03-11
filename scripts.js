@@ -5,6 +5,11 @@ var imglink;
 
 var t1seriesagg;
 var t2seriesagg;
+//the scorecount variables^
+
+var t1seriesagg2 = 0;
+var t2seriesagg2 = 0;
+//the game count variables ^
 
 var g1otstring;
 var g2otstring;
@@ -2827,9 +2832,11 @@ function generateText(){
 	if(g1t1agg > g1t2agg){
 		t1abrg1 = "**"+t1abr+"**";
 		t2abrg1 = t2abr;
+		t1seriesagg2++;
 	}else if(g1t2agg > g1t1agg){
 		t2abrg1 = "**"+t2abr+"**";
 		t1abrg1 = t1abr;
+		t2seriesagg2++;
 	}else{
 		t1abrg1 = t1abr;
 		t2abrg1 = t2abr;
@@ -2839,9 +2846,11 @@ function generateText(){
 	if(g2t1agg > g2t2agg){
 		t1abrg2 = "**"+t1abr+"**";
 		t2abrg2 = t2abr;
+		t1seriesagg2++;
 	}else if(g2t2agg > g2t1agg){
 		t2abrg2 = "**"+t2abr+"**";
 		t1abrg2 = t1abr;
+		t2seriesagg2++;
 	}else{
 		t1abrg2 = t1abr;
 		t2abrg2 = t2abr;
@@ -2850,9 +2859,11 @@ function generateText(){
 	if(g3t1agg > g3t2agg){
 		t1abrg3 = "**"+t1abr+"**";
 		t2abrg3 = t2abr;
+		t1seriesagg2++;
 	}else if(g3t2agg > g3t1agg){
 		t2abrg3 = "**"+t2abr+"**";
 		t1abrg3 = t1abr;
+		t2seriesagg2++;
 	}else{
 		t1abrg3 = t1abr;
 		t2abrg3 = t2abr;
@@ -2861,9 +2872,11 @@ function generateText(){
 	if(g4t1agg > g4t2agg){
 		t1abrg4 = "**"+t1abr+"**";
 		t2abrg4 = t2abr;
+		t1seriesagg2++;
 	}else if(g4t2agg > g4t1agg){
 		t2abrg4 = "**"+t2abr+"**";
 		t1abrg4 = t1abr;
+		t2seriesagg2++;
 	}else{
 		t1abrg4 = t1abr;
 		t2abrg4 = t2abr;
@@ -2872,9 +2885,11 @@ function generateText(){
 	if(g5t1agg > g5t2agg){
 		t1abrg5 = "**"+t1abr+"**";
 		t2abrg5 = t2abr;
+		t1seriesagg2++;
 	}else if(g5t2agg > g5t1agg){
 		t2abrg5 = "**"+t2abr+"**";
 		t1abrg5 = t1abr;
+		t2seriesagg2++;
 	}else{
 		t1abrg5 = t1abr;
 		t2abrg5 = t2abr;
@@ -2883,9 +2898,11 @@ function generateText(){
 	if(g6t1agg > g6t2agg){
 		t1abrg6 = "**"+t1abr+"**";
 		t2abrg6 = t2abr;
+		t1seriesagg2++;
 	}else if(g6t2agg > g6t1agg){
 		t2abrg6 = "**"+t2abr+"**";
 		t1abrg6 = t1abr;
+		t2seriesagg2++;
 	}else{
 		t1abrg6 = t1abr;
 		t2abrg6 = t2abr;
@@ -2894,9 +2911,11 @@ function generateText(){
 	if(g7t1agg > g7t2agg){
 		t1abrg7 = "**"+t1abr+"**";
 		t2abrg7 = t2abr;
+		t1seriesagg2++;
 	}else if(g7t2agg > g7t1agg){
 		t2abrg7 = "**"+t2abr+"**";
 		t1abrg7 = t1abr;
+		t2seriesagg2++;
 	}else{
 		t1abrg7 = t1abr;
 		t2abrg7 = t2abr;
@@ -2971,7 +2990,7 @@ function drawText(){
 			"\n|**"+g2mapname+"**|[**G2H1**]("+g2h1eulink+")||"+g2otstring+"|***END***|"+
 			"\n|"+t1abrg2+"|"+t1g2h1score+"||"+t1g2otscore+"|"+g2t1agg+"|"+
 			"\n|"+t2abrg2+"|"+t2g2h1score+"||"+t2g2otscore+"|"+g2t2agg+"|"+
-			"\n|AGG|"+t1abr+": "+t1seriesagg+"|||"+t2abr+": "+t2seriesagg+"|"+
+			"\n|Series|"+t1abr+": "+t1seriesagg2+"|||"+t2abr+": "+t2seriesagg2+"|"+
 			"\n"+
 			"\n"+
 			"\n[***Stream***]("+slink+") By: "+sname+""+
@@ -3000,7 +3019,7 @@ function drawText(){
 			"\n|**"+g3mapname+"**|[**G3H1**]("+g3h1eulink+")||"+g3otstring+"|***END***|"+
 			"\n|"+t1abrg3+"|"+t1g3h1score+"||"+t1g3otscore+"|"+g3t1agg+"|"+
 			"\n|"+t2abrg3+"|"+t2g3h1score+"||"+t2g3otscore+"|"+g3t2agg+"|"+
-			"\n|AGG|"+t1abr+": "+t1seriesagg+"|||"+t2abr+": "+t2seriesagg+"|"+
+			"\n|Series|"+t1abr+": "+t1seriesagg2+"|||"+t2abr+": "+t2seriesagg2+"|"+
 			"\n"+
 			"\n"+
 			"\n[***Stream***]("+slink+") By: "+sname+""+
@@ -3032,7 +3051,7 @@ function drawText(){
 			"\n|**"+g4mapname+"**|[**G4H1**]("+g4h1eulink+")||"+g4otstring+"|***END***|"+
 			"\n|"+t1abrg4+"|"+t1g4h1score+"||"+t1g4otscore+"|"+g4t1agg+"|"+
 			"\n|"+t2abrg4+"|"+t2g4h1score+"||"+t2g4otscore+"|"+g4t2agg+"|"+
-			"\n|AGG|"+t1abr+": "+t1seriesagg+"|||"+t2abr+": "+t2seriesagg+"|"+
+			"\n|Series|"+t1abr+": "+t1seriesagg2+"|||"+t2abr+": "+t2seriesagg2+"|"+
 			"\n"+
 			"\n"+
 			"\n[***Stream***]("+slink+") By: "+sname+""+
@@ -3067,7 +3086,7 @@ function drawText(){
 			"\n|**"+g5mapname+"**|[**G5H1**]("+g5h1eulink+")||"+g5otstring+"|***END***|"+
 			"\n|"+t1abrg5+"|"+t1g5h1score+"||"+t1g5otscore+"|"+g5t1agg+"|"+
 			"\n|"+t2abrg5+"|"+t2g5h1score+"||"+t2g5otscore+"|"+g5t2agg+"|"+
-			"\n|AGG|"+t1abr+": "+t1seriesagg+"|||"+t2abr+": "+t2seriesagg+"|"+
+			"\n|Series|"+t1abr+": "+t1seriesagg2+"|||"+t2abr+": "+t2seriesagg2+"|"+
 			"\n"+
 			"\n"+
 			"\n[***Stream***]("+slink+") By: "+sname+""+
@@ -3105,7 +3124,7 @@ function drawText(){
 			"\n|**"+g6mapname+"**|[**G6H1**]("+g6h1eulink+")||"+g6otstring+"|***END***|"+
 			"\n|"+t1abrg6+"|"+t1g6h1score+"||"+t1g6otscore+"|"+g6t1agg+"|"+
 			"\n|"+t2abrg6+"|"+t2g6h1score+"||"+t2g6otscore+"|"+g6t2agg+"|"+
-			"\n|AGG|"+t1abr+": "+t1seriesagg+"|||"+t2abr+": "+t2seriesagg+"|"+
+			"\n|Series|"+t1abr+": "+t1seriesagg2+"|||"+t2abr+": "+t2seriesagg2+"|"+
 			"\n"+
 			"\n"+
 			"\n[***Stream***]("+slink+") By: "+sname+""+
@@ -3146,7 +3165,7 @@ function drawText(){
 			"\n|**"+g7mapname+"**|[**G7H1**]("+g7h1eulink+")||"+g7otstring+"|***END***|"+
 			"\n|"+t1abrg7+"|"+t1g7h1score+"||"+t1g7otscore+"|"+g7t1agg+"|"+
 			"\n|"+t2abrg7+"|"+t2g7h1score+"||"+t2g7otscore+"|"+g7t2agg+"|"+
-			"\n|AGG|"+t1abr+": "+t1seriesagg+"|||"+t2abr+": "+t2seriesagg+"|"+
+			"\n|Series|"+t1abr+": "+t1seriesagg2+"|||"+t2abr+": "+t2seriesagg2+"|"+
 			"\n"+
 			"\n"+
 			"\n[***Stream***]("+slink+") By: "+sname+""+
