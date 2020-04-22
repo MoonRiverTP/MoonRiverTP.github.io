@@ -1334,17 +1334,17 @@ function generatePic(){
 
 			//game2
 			ctx.fillText("Game 2: "+g2mapname+"",20,180);
-			ctx.fillText("Half 1: ",35,240);
+			ctx.fillText("Half 1: ",35,200);
 			//g2half1
 			if(t1g2h1score > t2g2h1score){
-				ctx.strokeText(t1abr+": "+t1g2h1score+"", 90, 240);
+				ctx.strokeText(t1abr+": "+t1g2h1score+"", 90, 200);
 			}else{
-				ctx.fillText(t1abr+": "+t1g2h1score+"", 90, 240);
+				ctx.fillText(t1abr+": "+t1g2h1score+"", 90, 200);
 			}
 			if(t2g2h1score > t1g2h1score){
-				ctx.strokeText(t2abr+": "+t2g2h1score+"", 160, 240);
+				ctx.strokeText(t2abr+": "+t2g2h1score+"", 160, 200);
 			}else{
-				ctx.fillText(t2abr+": "+t2g2h1score+"", 160, 240);
+				ctx.fillText(t2abr+": "+t2g2h1score+"", 160, 200);
 			}
 			//g2half2
 			ctx.fillText("Half 2:",35,220);
