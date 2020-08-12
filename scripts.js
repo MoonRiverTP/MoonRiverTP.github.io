@@ -2446,12 +2446,12 @@ function getScoresFromEu(){
 			g1mapname = JSON.stringify(jsonData.map.name);
 			if(jsonData.teams[0].name == t1abr){
 				//team 0 for game is team 1
-				t1g1h1score = jsonData.teams[0].score;
-				t2g1h1score = jsonData.teams[1].score;
+				t1g1h1score = parseInt(jsonData.teams[0].score);
+				t2g1h1score = parseInt(jsonData.teams[1].score);
 			}else{
 				//team 0 for game is team 2
-				t1g1h1score = jsonData.teams[1].score;
-				t2g1h1score = jsonData.teams[0].score;
+				t1g1h1score = parseInt(jsonData.teams[1].score);
+				t2g1h1score = parseInt(jsonData.teams[0].score);
 			}
 
 			//get half 2 scores from game 1
@@ -2467,12 +2467,12 @@ function getScoresFromEu(){
 
 			if(jsonData.teams[0].name == t1abr){
 				//team 0 for game is team 1
-				t1g1h2score = jsonData.teams[0].score;
+				t1g1h2score = parseInt(jsonData.teams[0].score);
 				t2g1h2score = jsonData.teams[1].score;
 			}else{
 				//team 0 for game is team 2
-				t1g1h2score = jsonData.teams[1].score;
-				t2g1h2score = jsonData.teams[0].score;
+				t1g1h2score = parseInt(jsonData.teams[1].score);
+				t2g1h2score = parseInt(jsonData.teams[0].score);
 			}
 
 		//get OT scores from game 1
@@ -2487,11 +2487,11 @@ function getScoresFromEu(){
 					console.log(jsonData);
 
 				if(jsonData.teams[0].name == t1abr){
-					t1g1otscore = jsonData.teams[0].score;
-					t2g1otscore	= jsonData.teams[1].score;
+					t1g1otscore = parseInt(jsonData.teams[0].score);
+					t2g1otscore	= parseInt(jsonData.teams[1].score);
 				}else{
-					t1g1otscore = jsonData.teams[1].score;
-					t2g1otscore	= jsonData.teams[0].score;
+					t1g1otscore = parseInt(jsonData.teams[1].score);
+					t2g1otscore	= parseInt(jsonData.teams[0].score);
 				}
 
 			}//end of OT if
@@ -2510,12 +2510,12 @@ function getScoresFromEu(){
 			g2mapname = jsonData.map.name;
 			if(jsonData.teams[0].name == t1abr){
 				//team 0 for game is team 1
-				t1g2h1score = jsonData.teams[0].score;
-				t2g2h1score = jsonData.teams[1].score;
+				t1g2h1score = parseInt(jsonData.teams[0].score);
+				t2g2h1score = parseInt(jsonData.teams[1].score);
 			}else{
 				//team 0 for game is team 2
-				t1g2h1score = jsonData.teams[1].score;
-				t2g2h1score = jsonData.teams[0].score;
+				t1g2h1score = parseInt(jsonData.teams[1].score);
+				t2g2h1score = parseInt(jsonData.teams[0].score);
 			}
 
 			//get half 2 scores from game 1
@@ -2531,12 +2531,12 @@ function getScoresFromEu(){
 
 			if(jsonData.teams[0].name == t1abr){
 				//team 0 for game is team 1
-				t1g2h2score = jsonData.teams[0].score;
-				t2g2h2score = jsonData.teams[1].score;
+				t1g2h2score = parseInt(jsonData.teams[0].score);
+				t2g2h2score = parseInt(jsonData.teams[1].score);
 			}else{
 				//team 0 for game is team 2
-				t1g2h2score = jsonData.teams[1].score;
-				t2g2h2score = jsonData.teams[0].score;
+				t1g2h2score = parseInt(jsonData.teams[1].score);
+				t2g2h2score = parseInt(jsonData.teams[0].score);
 			}
 
 		//get OT scores from game 2
@@ -2550,11 +2550,11 @@ function getScoresFromEu(){
 					console.log(jsonData);
 
 				if(jsonData.teams[0].name == t1abr){
-					t1g2otscore = jsonData.teams[0].score;
-					t2g2otscore	= jsonData.teams[1].score;
+					t1g2otscore = parseInt(jsonData.teams[0].score);
+					t2g2otscore	= parseInt(jsonData.teams[1].score);
 				}else{
-					t1g2otscore = jsonData.teams[1].score;
-					t2g2otscore	= jsonData.teams[0].score;
+					t1g2otscore = parseInt(jsonData.teams[1].score);
+					t2g2otscore	= parseInt(jsonData.teams[0].score);
 				}
 
 			}//end of OT if
