@@ -1,5 +1,5 @@
 //Scripts n shit
-
+console.log("the new one");
 var gamesP;
 var imglink;
 
@@ -2412,6 +2412,7 @@ function generatePic(){
 
 
 function getScoresFromEu(){
+
 	(async () => {
 	let baseUrl = "https://tagpro.eu/data/"
 	if(plyoff == 1){
@@ -2443,7 +2444,7 @@ function getScoresFromEu(){
 				console.log(jsonData);
 
 
-			g1mapname = JSON.stringify(jsonData.map.name);
+			g1mapname = JSON.stringify(jsonData.map.name));
 			if(jsonData.teams[0].name == t1abr){
 				//team 0 for game is team 1
 				t1g1h1score = parseInt(jsonData.teams[0].score);
@@ -2507,7 +2508,7 @@ function getScoresFromEu(){
 				console.log(jsonData);
 
 
-			g2mapname = jsonData.map.name;
+			g2mapname = JSON.stringify(jsonData.map.name);
 			if(jsonData.teams[0].name == t1abr){
 				//team 0 for game is team 1
 				t1g2h1score = parseInt(jsonData.teams[0].score);
