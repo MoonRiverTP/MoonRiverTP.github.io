@@ -2444,7 +2444,7 @@ function getScoresFromEu(){
 				console.log(jsonData);
 
 
-			g1mapname = JSON.stringify(jsonData.map.name));
+			g1mapname = JSON.stringify(jsonData.map.name);
 			if(jsonData.teams[0].name == t1abr){
 				//team 0 for game is team 1
 				t1g1h1score = parseInt(jsonData.teams[0].score);
