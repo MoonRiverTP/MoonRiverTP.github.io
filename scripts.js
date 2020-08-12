@@ -73,71 +73,71 @@ var g7t2agg;
 var t1g1h1score;
 var t2g1h1score;
 var g1h1eulink;
-var t1g1h2score;
-var t2g1h2score;
+var t1g1h2score=0;
+var t2g1h2score=0;
 var g1h2eulink;
-var t1g1otscore;
-var t2g1otscore;
+var t1g1otscore =0;
+var t2g1otscore=0;
 var g1oteulink = 0;
 
 var t1g2h1score;
 var t2g2h1score;
 var g2h1eulink;
-var t1g2h2score;
-var t2g2h2score;
+var t1g2h2score=0;
+var t2g2h2score=0;
 var g2h2eulink;
-var t1g2otscore;
-var t2g2otscore;
+var t1g2otscore=0;
+var t2g2otscore=0;
 var g2oteulink = 0;
 
 var t1g3h1score;
 var t2g3h1score;
 var g3h1eulink;
-var t1g3h2score;
-var t2g3h2score;
+var t1g3h2score=0;
+var t2g3h2score=0;
 var g3h2eulink;
-var t1g3otscore;
-var t2g3otscore;
+var t1g3otscore=0;
+var t2g3otscore=0;
 var g3oteulink = 0;
 
 var t1g4h1score;
 var t2g4h1score;
 var g4h1eulink;
-var t1g4h2score;
-var t2g4h2score;
+var t1g4h2score=0;
+var t2g4h2score=0;
 var g4h2eulink;
-var t1g4otscore;
-var t2g4otscore;
+var t1g4otscore=0;
+var t2g4otscore=0;
 var g4oteulink = 0;
 
 var t1g5h1score;
 var t2g5h1score;
 var g5h1eulink;
-var t1g5h2score;
-var t2g5h2score;
+var t1g5h2score=0;
+var t2g5h2score=0;
 var g5h2eulink;
-var t1g5otscore;
-var t2g5otscore;
+var t1g5otscore=0;
+var t2g5otscore=0;
 var g5oteulink = 0;
 
 var t1g6h1score;
 var t2g6h1score;
 var g6h1eulink;
-var t1g6h2score;
-var t2g6h2score;
+var t1g6h2score=0;
+var t2g6h2score=0;
 var g6h2eulink;
-var t1g6otscore;
-var t2g6otscore;
+var t1g6otscore=0;
+var t2g6otscore=0;
 var g6oteulink = 0;
 
 var t1g7h1score;
 var t2g7h1score;
 var g7h1eulink;
-var t1g7h2score;
-var t2g7h2score;
+var t1g7h2score=0;
+var t2g7h2score=0;
 var g7h2eulink;
-var t1g7otscore;
-var t2g7otscore;
+var t1g7otscore=0;
+var t2g7otscore=0;
 var g7oteulink = 0;
 
 var c;
@@ -147,6 +147,7 @@ var serieswint1abr;
 var serieswint2abr;
 
 var jsonData;
+
 //testEUFetch();
 function testEUFetch(){
 	let baseUrl = "https://tagpro.eu/data/"
@@ -299,8 +300,9 @@ function drawPic(){
 	document.getElementById("picarea").style.display="inline";
 	document.getElementById("mobilepic").innerHTML = "<script>generatePic();</script>";
 	}
-
+	console.log("generating pic")
 	generatePic();
+
 }
 
 function generatePic(){
@@ -318,6 +320,7 @@ function generatePic(){
 			ctx.font = "15px 'Raleway', sans-serif";
 
 			//GAme1
+			console.log(g1mapname);
 			ctx.fillText("Game 1: "+g1mapname+"",20,80);
 			ctx.fillText("Half 1: ",35,100);
 			//g1half1
@@ -2417,20 +2420,6 @@ function getScoresFromEu(){
 		if(plyoff == 1){
 			//get scores from eu if playoffs are enabled
 			if(gamesP == 2){
-
-			}else if(gamesP == 3){
-
-			}else if(gamesP == 4){
-
-			}else if(gamesP == 5){
-
-			}else if(gamesP == 6){
-
-			}else if(gamesP == 7){
-
-			}
-		}else{
-			if(gamesP == 2){
 				//get scores from Eu if play offs are disabled
 				//Get half 1 scores from game 1
 			//GAME 1 HALF 1
@@ -2440,40 +2429,22 @@ function getScoresFromEu(){
 
 					response = await fetch(finalString);
 					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
 					console.log(jsonData);
 
 
-				g1mapname = JSON.stringify(jsonData.map.name);
+				g1mapname = jsonData.map.name;
 				if(jsonData.teams[0].name == t1abr){
 					//team 0 for game is team 1
-					t1g1h1score = parseInt(jsonData.teams[0].score);
-					t2g1h1score = parseInt(jsonData.teams[1].score);
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
 				}else{
 					//team 0 for game is team 2
-					t1g1h1score = parseInt(jsonData.teams[1].score);
-					t2g1h1score = parseInt(jsonData.teams[0].score);
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
 				}
 
 				//get half 2 scores from game 1
-			//GAME 1 HALF 2
-				splitUrl = g1h2eulink.slice(18,40);
-				finalString = baseUrl.concat(splitUrl);
-				//loads JSON file from the EU
-
-					response = await fetch(finalString);
-					jsonData = await response.json();
-					console.log(jsonData);
-
-
-				if(jsonData.teams[0].name == t1abr){
-					//team 0 for game is team 1
-					t1g1h2score = parseInt(jsonData.teams[0].score);
-					t2g1h2score = parseInt(jsonData.teams[1].score);
-				}else{
-					//team 0 for game is team 2
-					t1g1h2score = parseInt(jsonData.teams[1].score);
-					t2g1h2score = parseInt(jsonData.teams[0].score);
-				}
 
 			//get OT scores from game 1
 			console.log(g1oteulink);
@@ -2482,16 +2453,17 @@ function getScoresFromEu(){
 					finalString = baseUrl.concat(splitUrl);
 					//loads JSON file from the EU
 
-						let response = await fetch(finalString);
-						let jsonData = await response.json();
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
 						console.log(jsonData);
 
 					if(jsonData.teams[0].name == t1abr){
-						t1g1otscore = parseInt(jsonData.teams[0].score);
-						t2g1otscore	= parseInt(jsonData.teams[1].score);
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
 					}else{
-						t1g1otscore = parseInt(jsonData.teams[1].score);
-						t2g1otscore	= parseInt(jsonData.teams[0].score);
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
 					}
 
 				}//end of OT if
@@ -2504,18 +2476,1278 @@ function getScoresFromEu(){
 
 					response = await fetch(finalString);
 					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
 					console.log(jsonData);
 
 
-				g2mapname = JSON.stringify(jsonData.map.name);
+				g2mapname = jsonData.map.name;
 				if(jsonData.teams[0].name == t1abr){
 					//team 0 for game is team 1
-					t1g2h1score = parseInt(jsonData.teams[0].score);
-					t2g2h1score = parseInt(jsonData.teams[1].score);
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
 				}else{
 					//team 0 for game is team 2
-					t1g2h1score = parseInt(jsonData.teams[1].score);
-					t2g2h1score = parseInt(jsonData.teams[0].score);
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 2
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+			}else if(gamesP == 3){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+			//GAME 2
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 2
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//GAME 3
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+
+				//get OT scores from game 2
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+			}else if(gamesP == 4){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+			//GAME 2
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 2
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//GAME 3
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+
+				//get OT scores from game 2
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 4 HALF 1
+						splitUrl = g4h1eulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+
+						g4mapname = jsonData.map.name;
+						if(jsonData.teams[0].name == t1abr){
+							//team 0 for game is team 1
+							t1g4h1score = jsonData.teams[0].score;
+							t2g4h1score = jsonData.teams[1].score;
+						}else{
+							//team 0 for game is team 2
+							t1g4h1score = jsonData.teams[1].score;
+							t2g4h1score = jsonData.teams[0].score;
+						}
+
+						//get half 2 scores from game 1
+
+					//get OT scores from game 2
+						if(g4oteulink != 0){
+							splitUrl = g4oteulink.slice(18,40);
+							finalString = baseUrl.concat(splitUrl);
+							//loads JSON file from the EU
+
+								response = await fetch(finalString);
+								jsonData = await response.json();
+								//jsonData = JSON.parse(jsonData);
+								console.log(jsonData);
+
+							if(jsonData.teams[0].name == t1abr){
+								t1g4otscore = jsonData.teams[0].score;
+								t2g4otscore	= jsonData.teams[1].score;
+							}else{
+								t1g4otscore = jsonData.teams[1].score;
+								t2g4otscore	= jsonData.teams[0].score;
+							}
+
+						}//end of OT if
+			}else if(gamesP == 5){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+			//GAME 2
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 2
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//GAME 3
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+
+				//get OT scores from game 2
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 4 HALF 1
+						splitUrl = g4h1eulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+
+						g4mapname = jsonData.map.name;
+						if(jsonData.teams[0].name == t1abr){
+							//team 0 for game is team 1
+							t1g4h1score = jsonData.teams[0].score;
+							t2g4h1score = jsonData.teams[1].score;
+						}else{
+							//team 0 for game is team 2
+							t1g4h1score = jsonData.teams[1].score;
+							t2g4h1score = jsonData.teams[0].score;
+						}
+
+						//get half 2 scores from game 1
+
+					//get OT scores from game 2
+						if(g4oteulink != 0){
+							splitUrl = g4oteulink.slice(18,40);
+							finalString = baseUrl.concat(splitUrl);
+							//loads JSON file from the EU
+
+								response = await fetch(finalString);
+								jsonData = await response.json();
+								//jsonData = JSON.parse(jsonData);
+								console.log(jsonData);
+
+							if(jsonData.teams[0].name == t1abr){
+								t1g4otscore = jsonData.teams[0].score;
+								t2g4otscore	= jsonData.teams[1].score;
+							}else{
+								t1g4otscore = jsonData.teams[1].score;
+								t2g4otscore	= jsonData.teams[0].score;
+							}
+
+						}//end of OT if
+
+						//GAME 5 HALF 1
+							splitUrl = g5h1eulink.slice(18,40);
+							finalString = baseUrl.concat(splitUrl);
+							//loads JSON file from the EU
+
+								response = await fetch(finalString);
+								jsonData = await response.json();
+								//jsonData = JSON.parse(jsonData);
+								console.log(jsonData);
+
+
+							g5mapname = jsonData.map.name;
+							if(jsonData.teams[0].name == t1abr){
+								//team 0 for game is team 1
+								t1g5h1score = jsonData.teams[0].score;
+								t2g5h1score = jsonData.teams[1].score;
+							}else{
+								//team 0 for game is team 2
+								t1g5h1score = jsonData.teams[1].score;
+								t2g5h1score = jsonData.teams[0].score;
+							}
+
+							//get half 2 scores from game 1
+
+						//get OT scores from game 2
+							if(g5oteulink != 0){
+								splitUrl = g5oteulink.slice(18,40);
+								finalString = baseUrl.concat(splitUrl);
+								//loads JSON file from the EU
+
+									response = await fetch(finalString);
+									jsonData = await response.json();
+									//jsonData = JSON.parse(jsonData);
+									console.log(jsonData);
+
+								if(jsonData.teams[0].name == t1abr){
+									t1g5otscore = jsonData.teams[0].score;
+									t2g5otscore	= jsonData.teams[1].score;
+								}else{
+									t1g5otscore = jsonData.teams[1].score;
+									t2g5otscore	= jsonData.teams[0].score;
+								}
+
+							}//end of OT if
+			}else if(gamesP == 6){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+			//GAME 2
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 2
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//GAME 3
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+
+				//get OT scores from game 2
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 4 HALF 1
+						splitUrl = g4h1eulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+
+						g4mapname = jsonData.map.name;
+						if(jsonData.teams[0].name == t1abr){
+							//team 0 for game is team 1
+							t1g4h1score = jsonData.teams[0].score;
+							t2g4h1score = jsonData.teams[1].score;
+						}else{
+							//team 0 for game is team 2
+							t1g4h1score = jsonData.teams[1].score;
+							t2g4h1score = jsonData.teams[0].score;
+						}
+
+						//get half 2 scores from game 1
+
+					//get OT scores from game 2
+						if(g4oteulink != 0){
+							splitUrl = g4oteulink.slice(18,40);
+							finalString = baseUrl.concat(splitUrl);
+							//loads JSON file from the EU
+
+								response = await fetch(finalString);
+								jsonData = await response.json();
+								//jsonData = JSON.parse(jsonData);
+								console.log(jsonData);
+
+							if(jsonData.teams[0].name == t1abr){
+								t1g4otscore = jsonData.teams[0].score;
+								t2g4otscore	= jsonData.teams[1].score;
+							}else{
+								t1g4otscore = jsonData.teams[1].score;
+								t2g4otscore	= jsonData.teams[0].score;
+							}
+
+						}//end of OT if
+
+						//GAME 5 HALF 1
+							splitUrl = g5h1eulink.slice(18,40);
+							finalString = baseUrl.concat(splitUrl);
+							//loads JSON file from the EU
+
+								response = await fetch(finalString);
+								jsonData = await response.json();
+								//jsonData = JSON.parse(jsonData);
+								console.log(jsonData);
+
+
+							g5mapname = jsonData.map.name;
+							if(jsonData.teams[0].name == t1abr){
+								//team 0 for game is team 1
+								t1g5h1score = jsonData.teams[0].score;
+								t2g5h1score = jsonData.teams[1].score;
+							}else{
+								//team 0 for game is team 2
+								t1g5h1score = jsonData.teams[1].score;
+								t2g5h1score = jsonData.teams[0].score;
+							}
+
+							//get half 2 scores from game 1
+
+						//get OT scores from game 2
+							if(g5oteulink != 0){
+								splitUrl = g5oteulink.slice(18,40);
+								finalString = baseUrl.concat(splitUrl);
+								//loads JSON file from the EU
+
+									response = await fetch(finalString);
+									jsonData = await response.json();
+									//jsonData = JSON.parse(jsonData);
+									console.log(jsonData);
+
+								if(jsonData.teams[0].name == t1abr){
+									t1g5otscore = jsonData.teams[0].score;
+									t2g5otscore	= jsonData.teams[1].score;
+								}else{
+									t1g5otscore = jsonData.teams[1].score;
+									t2g5otscore	= jsonData.teams[0].score;
+								}
+
+							}//end of OT if
+							//GAME 6 HALF 1
+								splitUrl = g6h1eulink.slice(18,40);
+								finalString = baseUrl.concat(splitUrl);
+								//loads JSON file from the EU
+
+									response = await fetch(finalString);
+									jsonData = await response.json();
+									//jsonData = JSON.parse(jsonData);
+									console.log(jsonData);
+
+
+								g6mapname = jsonData.map.name;
+								if(jsonData.teams[0].name == t1abr){
+									//team 0 for game is team 1
+									t1g6h1score = jsonData.teams[0].score;
+									t2g6h1score = jsonData.teams[1].score;
+								}else{
+									//team 0 for game is team 2
+									t1g6h1score = jsonData.teams[1].score;
+									t2g6h1score = jsonData.teams[0].score;
+								}
+
+								//get half 2 scores from game 1
+
+							//get OT scores from game 2
+								if(g6oteulink != 0){
+									splitUrl = g6oteulink.slice(18,40);
+									finalString = baseUrl.concat(splitUrl);
+									//loads JSON file from the EU
+
+										response = await fetch(finalString);
+										jsonData = await response.json();
+										//jsonData = JSON.parse(jsonData);
+										console.log(jsonData);
+
+									if(jsonData.teams[0].name == t1abr){
+										t1g6otscore = jsonData.teams[0].score;
+										t2g6otscore	= jsonData.teams[1].score;
+									}else{
+										t1g6otscore = jsonData.teams[1].score;
+										t2g6otscore	= jsonData.teams[0].score;
+									}
+
+								}//end of OT if
+			}else if(gamesP == 7){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+			//GAME 2
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+
+			//get OT scores from game 2
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//GAME 3
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+
+				//get OT scores from game 2
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 4 HALF 1
+						splitUrl = g4h1eulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+
+						g4mapname = jsonData.map.name;
+						if(jsonData.teams[0].name == t1abr){
+							//team 0 for game is team 1
+							t1g4h1score = jsonData.teams[0].score;
+							t2g4h1score = jsonData.teams[1].score;
+						}else{
+							//team 0 for game is team 2
+							t1g4h1score = jsonData.teams[1].score;
+							t2g4h1score = jsonData.teams[0].score;
+						}
+
+						//get half 2 scores from game 1
+
+					//get OT scores from game 2
+						if(g4oteulink != 0){
+							splitUrl = g4oteulink.slice(18,40);
+							finalString = baseUrl.concat(splitUrl);
+							//loads JSON file from the EU
+
+								response = await fetch(finalString);
+								jsonData = await response.json();
+								//jsonData = JSON.parse(jsonData);
+								console.log(jsonData);
+
+							if(jsonData.teams[0].name == t1abr){
+								t1g4otscore = jsonData.teams[0].score;
+								t2g4otscore	= jsonData.teams[1].score;
+							}else{
+								t1g4otscore = jsonData.teams[1].score;
+								t2g4otscore	= jsonData.teams[0].score;
+							}
+
+						}//end of OT if
+
+						//GAME 5 HALF 1
+							splitUrl = g5h1eulink.slice(18,40);
+							finalString = baseUrl.concat(splitUrl);
+							//loads JSON file from the EU
+
+								response = await fetch(finalString);
+								jsonData = await response.json();
+								//jsonData = JSON.parse(jsonData);
+								console.log(jsonData);
+
+
+							g5mapname = jsonData.map.name;
+							if(jsonData.teams[0].name == t1abr){
+								//team 0 for game is team 1
+								t1g5h1score = jsonData.teams[0].score;
+								t2g5h1score = jsonData.teams[1].score;
+							}else{
+								//team 0 for game is team 2
+								t1g5h1score = jsonData.teams[1].score;
+								t2g5h1score = jsonData.teams[0].score;
+							}
+
+							//get half 2 scores from game 1
+
+						//get OT scores from game 2
+							if(g5oteulink != 0){
+								splitUrl = g5oteulink.slice(18,40);
+								finalString = baseUrl.concat(splitUrl);
+								//loads JSON file from the EU
+
+									response = await fetch(finalString);
+									jsonData = await response.json();
+									//jsonData = JSON.parse(jsonData);
+									console.log(jsonData);
+
+								if(jsonData.teams[0].name == t1abr){
+									t1g5otscore = jsonData.teams[0].score;
+									t2g5otscore	= jsonData.teams[1].score;
+								}else{
+									t1g5otscore = jsonData.teams[1].score;
+									t2g5otscore	= jsonData.teams[0].score;
+								}
+
+							}//end of OT if
+							//GAME 6 HALF 1
+								splitUrl = g6h1eulink.slice(18,40);
+								finalString = baseUrl.concat(splitUrl);
+								//loads JSON file from the EU
+
+									response = await fetch(finalString);
+									jsonData = await response.json();
+									//jsonData = JSON.parse(jsonData);
+									console.log(jsonData);
+
+
+								g6mapname = jsonData.map.name;
+								if(jsonData.teams[0].name == t1abr){
+									//team 0 for game is team 1
+									t1g6h1score = jsonData.teams[0].score;
+									t2g6h1score = jsonData.teams[1].score;
+								}else{
+									//team 0 for game is team 2
+									t1g6h1score = jsonData.teams[1].score;
+									t2g6h1score = jsonData.teams[0].score;
+								}
+
+								//get half 2 scores from game 1
+
+							//get OT scores from game 2
+								if(g6oteulink != 0){
+									splitUrl = g6oteulink.slice(18,40);
+									finalString = baseUrl.concat(splitUrl);
+									//loads JSON file from the EU
+
+										response = await fetch(finalString);
+										jsonData = await response.json();
+										//jsonData = JSON.parse(jsonData);
+										console.log(jsonData);
+
+									if(jsonData.teams[0].name == t1abr){
+										t1g6otscore = jsonData.teams[0].score;
+										t2g6otscore	= jsonData.teams[1].score;
+									}else{
+										t1g6otscore = jsonData.teams[1].score;
+										t2g6otscore	= jsonData.teams[0].score;
+									}
+
+								}//end of OT if
+
+								//GAME 7 HALF 1
+									splitUrl = g7h1eulink.slice(18,40);
+									finalString = baseUrl.concat(splitUrl);
+									//loads JSON file from the EU
+
+										response = await fetch(finalString);
+										jsonData = await response.json();
+										//jsonData = JSON.parse(jsonData);
+										console.log(jsonData);
+
+
+									g7mapname = jsonData.map.name;
+									if(jsonData.teams[0].name == t1abr){
+										//team 0 for game is team 1
+										t1g7h1score = jsonData.teams[0].score;
+										t2g7h1score = jsonData.teams[1].score;
+									}else{
+										//team 0 for game is team 2
+										t1g7h1score = jsonData.teams[1].score;
+										t2g7h1score = jsonData.teams[0].score;
+									}
+
+									//get half 2 scores from game 1
+
+								//get OT scores from game 2
+									if(g7oteulink != 0){
+										splitUrl = g7oteulink.slice(18,40);
+										finalString = baseUrl.concat(splitUrl);
+										//loads JSON file from the EU
+
+											response = await fetch(finalString);
+											jsonData = await response.json();
+											//jsonData = JSON.parse(jsonData);
+											console.log(jsonData);
+
+										if(jsonData.teams[0].name == t1abr){
+											t1g7otscore = jsonData.teams[0].score;
+											t2g7otscore	= jsonData.teams[1].score;
+										}else{
+											t1g7otscore = jsonData.teams[1].score;
+											t2g7otscore	= jsonData.teams[0].score;
+										}
+
+									}//end of OT if
+			}
+		}else{
+			if(gamesP == 2){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 1 HALF 2
+				splitUrl = g1h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h2score = jsonData.teams[0].score;
+					t2g1h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h2score = jsonData.teams[1].score;
+					t2g1h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+			//GAME 2
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
 				}
 
 				//get half 2 scores from game 1
@@ -2526,17 +3758,18 @@ function getScoresFromEu(){
 
 					response = await fetch(finalString);
 					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
 					console.log(jsonData);
 
 
 				if(jsonData.teams[0].name == t1abr){
 					//team 0 for game is team 1
-					await t1g2h2score = parseInt(jsonData.teams[0].score);
-					await t2g2h2score = parseInt(jsonData.teams[1].score);
+					t1g2h2score = jsonData.teams[0].score;
+					t2g2h2score = jsonData.teams[1].score;
 				}else{
 					//team 0 for game is team 2
-					await t1g2h2score = parseInt(jsonData.teams[1].score);
-					await t2g2h2score = parseInt(jsonData.teams[0].score);
+					t1g2h2score = jsonData.teams[1].score;
+					t2g2h2score = jsonData.teams[0].score;
 				}
 
 			//get OT scores from game 2
@@ -2545,34 +3778,1688 @@ function getScoresFromEu(){
 					finalString = baseUrl.concat(splitUrl);
 					//loads JSON file from the EU
 
-						let response = await fetch(finalString);
-						let jsonData = await response.json();
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
 						console.log(jsonData);
 
 					if(jsonData.teams[0].name == t1abr){
-						await t1g2otscore = parseInt(jsonData.teams[0].score);
-						await t2g2otscore	= parseInt(jsonData.teams[1].score);
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
 					}else{
-						await t1g2otscore = parseInt(jsonData.teams[1].score);
-						await t2g2otscore	= parseInt(jsonData.teams[0].score);
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
 					}
 
 				}//end of OT if
 
 			}else if(gamesP == 3){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 1 HALF 2
+				splitUrl = g1h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h2score = jsonData.teams[0].score;
+					t2g1h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h2score = jsonData.teams[1].score;
+					t2g1h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 2 HALF 2
+				splitUrl = g2h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h2score = jsonData.teams[0].score;
+					t2g2h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h2score = jsonData.teams[1].score;
+					t2g2h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g2oteulink);
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 3 HALF 2
+					splitUrl = g3h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h2score = jsonData.teams[0].score;
+						t2g3h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h2score = jsonData.teams[1].score;
+						t2g3h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g3oteulink);
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
 
 			}else if(gamesP == 4){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 1 HALF 2
+				splitUrl = g1h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h2score = jsonData.teams[0].score;
+					t2g1h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h2score = jsonData.teams[1].score;
+					t2g1h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 2 HALF 2
+				splitUrl = g2h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h2score = jsonData.teams[0].score;
+					t2g2h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h2score = jsonData.teams[1].score;
+					t2g2h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g2oteulink);
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 3 HALF 2
+					splitUrl = g3h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h2score = jsonData.teams[0].score;
+						t2g3h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h2score = jsonData.teams[1].score;
+						t2g3h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g3oteulink);
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+					//GAME 4 HALF 1
+					splitUrl = g4h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g4mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g4h1score = jsonData.teams[0].score;
+						t2g4h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g4h1score = jsonData.teams[1].score;
+						t2g4h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 4 HALF 2
+					splitUrl = g4h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g4h2score = jsonData.teams[0].score;
+						t2g4h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g4h2score = jsonData.teams[1].score;
+						t2g4h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g4oteulink);
+					if(g4oteulink != 0){
+						splitUrl = g4oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g4otscore = jsonData.teams[0].score;
+							t2g4otscore	= jsonData.teams[1].score;
+						}else{
+							t1g4otscore = jsonData.teams[1].score;
+							t2g4otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
 
 			}else if(gamesP == 5){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
 
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 1 HALF 2
+				splitUrl = g1h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h2score = jsonData.teams[0].score;
+					t2g1h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h2score = jsonData.teams[1].score;
+					t2g1h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 2 HALF 2
+				splitUrl = g2h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h2score = jsonData.teams[0].score;
+					t2g2h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h2score = jsonData.teams[1].score;
+					t2g2h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g2oteulink);
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 3 HALF 2
+					splitUrl = g3h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h2score = jsonData.teams[0].score;
+						t2g3h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h2score = jsonData.teams[1].score;
+						t2g3h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g3oteulink);
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+					//GAME 4 HALF 1
+					splitUrl = g4h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g4mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g4h1score = jsonData.teams[0].score;
+						t2g4h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g4h1score = jsonData.teams[1].score;
+						t2g4h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 4 HALF 2
+					splitUrl = g4h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g4h2score = jsonData.teams[0].score;
+						t2g4h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g4h2score = jsonData.teams[1].score;
+						t2g4h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g4oteulink);
+					if(g4oteulink != 0){
+						splitUrl = g4oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g4otscore = jsonData.teams[0].score;
+							t2g4otscore	= jsonData.teams[1].score;
+						}else{
+							t1g4otscore = jsonData.teams[1].score;
+							t2g4otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 5 HALF 1
+					splitUrl = g5h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g5mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g5h1score = jsonData.teams[0].score;
+						t2g5h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g5h1score = jsonData.teams[1].score;
+						t2g5h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 5  HALF 2
+					splitUrl = g5h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g5h2score = jsonData.teams[0].score;
+						t2g5h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g5h2score = jsonData.teams[1].score;
+						t2g5h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g5oteulink);
+					if(g5oteulink != 0){
+						splitUrl = g5oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g5otscore = jsonData.teams[0].score;
+							t2g5otscore	= jsonData.teams[1].score;
+						}else{
+							t1g5otscore = jsonData.teams[1].score;
+							t2g5otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
 			}else if(gamesP == 6){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
 
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 1 HALF 2
+				splitUrl = g1h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h2score = jsonData.teams[0].score;
+					t2g1h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h2score = jsonData.teams[1].score;
+					t2g1h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 2 HALF 2
+				splitUrl = g2h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h2score = jsonData.teams[0].score;
+					t2g2h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h2score = jsonData.teams[1].score;
+					t2g2h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g2oteulink);
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 3 HALF 2
+					splitUrl = g3h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h2score = jsonData.teams[0].score;
+						t2g3h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h2score = jsonData.teams[1].score;
+						t2g3h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g3oteulink);
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+					//GAME 4 HALF 1
+					splitUrl = g4h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g4mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g4h1score = jsonData.teams[0].score;
+						t2g4h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g4h1score = jsonData.teams[1].score;
+						t2g4h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 4 HALF 2
+					splitUrl = g4h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g4h2score = jsonData.teams[0].score;
+						t2g4h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g4h2score = jsonData.teams[1].score;
+						t2g4h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g4oteulink);
+					if(g4oteulink != 0){
+						splitUrl = g4oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g4otscore = jsonData.teams[0].score;
+							t2g4otscore	= jsonData.teams[1].score;
+						}else{
+							t1g4otscore = jsonData.teams[1].score;
+							t2g4otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 5 HALF 1
+					splitUrl = g5h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g5mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g5h1score = jsonData.teams[0].score;
+						t2g5h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g5h1score = jsonData.teams[1].score;
+						t2g5h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 5  HALF 2
+					splitUrl = g5h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g5h2score = jsonData.teams[0].score;
+						t2g5h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g5h2score = jsonData.teams[1].score;
+						t2g5h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g5oteulink);
+					if(g5oteulink != 0){
+						splitUrl = g5oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g5otscore = jsonData.teams[0].score;
+							t2g5otscore	= jsonData.teams[1].score;
+						}else{
+							t1g5otscore = jsonData.teams[1].score;
+							t2g5otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 6 HALF 1
+					splitUrl = g6h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g6mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g6h1score = jsonData.teams[0].score;
+						t2g6h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g6h1score = jsonData.teams[1].score;
+						t2g6h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 6  HALF 2
+					splitUrl = g6h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g6h2score = jsonData.teams[0].score;
+						t2g6h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g6h2score = jsonData.teams[1].score;
+						t2g6h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g6oteulink);
+					if(g6oteulink != 0){
+						splitUrl = g6oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g6otscore = jsonData.teams[0].score;
+							t2g6otscore	= jsonData.teams[1].score;
+						}else{
+							t1g6otscore = jsonData.teams[1].score;
+							t2g6otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
 			}else if(gamesP == 7){
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 1 HALF 1
+				splitUrl = g1h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
 
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g1mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h1score = jsonData.teams[0].score;
+					t2g1h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h1score = jsonData.teams[1].score;
+					t2g1h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 1 HALF 2
+				splitUrl = g1h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g1h2score = jsonData.teams[0].score;
+					t2g1h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g1h2score = jsonData.teams[1].score;
+					t2g1h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g1oteulink);
+				if(g1oteulink != 0){
+					splitUrl = g1oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g1otscore = jsonData.teams[0].score;
+						t2g1otscore	= jsonData.teams[1].score;
+					}else{
+						t1g1otscore = jsonData.teams[1].score;
+						t2g1otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+				//get scores from Eu if play offs are disabled
+				//Get half 1 scores from game 1
+			//GAME 2 HALF 1
+				splitUrl = g2h1eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				g2mapname = jsonData.map.name;
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h1score = jsonData.teams[0].score;
+					t2g2h1score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h1score = jsonData.teams[1].score;
+					t2g2h1score = jsonData.teams[0].score;
+				}
+
+				//get half 2 scores from game 1
+			//GAME 2 HALF 2
+				splitUrl = g2h2eulink.slice(18,40);
+				finalString = baseUrl.concat(splitUrl);
+				//loads JSON file from the EU
+
+					response = await fetch(finalString);
+					jsonData = await response.json();
+					//jsonData = JSON.parse(jsonData);
+					console.log(jsonData);
+
+
+				if(jsonData.teams[0].name == t1abr){
+					//team 0 for game is team 1
+					t1g2h2score = jsonData.teams[0].score;
+					t2g2h2score = jsonData.teams[1].score;
+				}else{
+					//team 0 for game is team 2
+					t1g2h2score = jsonData.teams[1].score;
+					t2g2h2score = jsonData.teams[0].score;
+				}
+
+			//get OT scores from game 1
+			console.log(g2oteulink);
+				if(g2oteulink != 0){
+					splitUrl = g2oteulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+					if(jsonData.teams[0].name == t1abr){
+						t1g2otscore = jsonData.teams[0].score;
+						t2g2otscore	= jsonData.teams[1].score;
+					}else{
+						t1g2otscore = jsonData.teams[1].score;
+						t2g2otscore	= jsonData.teams[0].score;
+					}
+
+				}//end of OT if
+
+				//GAME 3 HALF 1
+					splitUrl = g3h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g3mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h1score = jsonData.teams[0].score;
+						t2g3h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h1score = jsonData.teams[1].score;
+						t2g3h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 3 HALF 2
+					splitUrl = g3h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g3h2score = jsonData.teams[0].score;
+						t2g3h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g3h2score = jsonData.teams[1].score;
+						t2g3h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g3oteulink);
+					if(g3oteulink != 0){
+						splitUrl = g3oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g3otscore = jsonData.teams[0].score;
+							t2g3otscore	= jsonData.teams[1].score;
+						}else{
+							t1g3otscore = jsonData.teams[1].score;
+							t2g3otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+					//GAME 4 HALF 1
+					splitUrl = g4h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g4mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g4h1score = jsonData.teams[0].score;
+						t2g4h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g4h1score = jsonData.teams[1].score;
+						t2g4h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 4 HALF 2
+					splitUrl = g4h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g4h2score = jsonData.teams[0].score;
+						t2g4h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g4h2score = jsonData.teams[1].score;
+						t2g4h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g4oteulink);
+					if(g4oteulink != 0){
+						splitUrl = g4oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g4otscore = jsonData.teams[0].score;
+							t2g4otscore	= jsonData.teams[1].score;
+						}else{
+							t1g4otscore = jsonData.teams[1].score;
+							t2g4otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 5 HALF 1
+					splitUrl = g5h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g5mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g5h1score = jsonData.teams[0].score;
+						t2g5h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g5h1score = jsonData.teams[1].score;
+						t2g5h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 5  HALF 2
+					splitUrl = g5h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g5h2score = jsonData.teams[0].score;
+						t2g5h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g5h2score = jsonData.teams[1].score;
+						t2g5h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g5oteulink);
+					if(g5oteulink != 0){
+						splitUrl = g5oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g5otscore = jsonData.teams[0].score;
+							t2g5otscore	= jsonData.teams[1].score;
+						}else{
+							t1g5otscore = jsonData.teams[1].score;
+							t2g5otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+
+					//GAME 6 HALF 1
+					splitUrl = g6h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g6mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g6h1score = jsonData.teams[0].score;
+						t2g6h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g6h1score = jsonData.teams[1].score;
+						t2g6h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 6  HALF 2
+					splitUrl = g6h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g6h2score = jsonData.teams[0].score;
+						t2g6h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g6h2score = jsonData.teams[1].score;
+						t2g6h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g6oteulink);
+					if(g6oteulink != 0){
+						splitUrl = g6oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g6otscore = jsonData.teams[0].score;
+							t2g6otscore	= jsonData.teams[1].score;
+						}else{
+							t1g6otscore = jsonData.teams[1].score;
+							t2g6otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
+					//GAME 6 HALF 1
+					splitUrl = g7h1eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					g7mapname = jsonData.map.name;
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g7h1score = jsonData.teams[0].score;
+						t2g7h1score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g7h1score = jsonData.teams[1].score;
+						t2g7h1score = jsonData.teams[0].score;
+					}
+
+					//get half 2 scores from game 1
+				//GAME 6  HALF 2
+					splitUrl = g7h2eulink.slice(18,40);
+					finalString = baseUrl.concat(splitUrl);
+					//loads JSON file from the EU
+
+						response = await fetch(finalString);
+						jsonData = await response.json();
+						//jsonData = JSON.parse(jsonData);
+						console.log(jsonData);
+
+
+					if(jsonData.teams[0].name == t1abr){
+						//team 0 for game is team 1
+						t1g7h2score = jsonData.teams[0].score;
+						t2g7h2score = jsonData.teams[1].score;
+					}else{
+						//team 0 for game is team 2
+						t1g7h2score = jsonData.teams[1].score;
+						t2g7h2score = jsonData.teams[0].score;
+					}
+
+				//get OT scores from game 1
+				console.log(g7oteulink);
+					if(g7oteulink != 0){
+						splitUrl = g7oteulink.slice(18,40);
+						finalString = baseUrl.concat(splitUrl);
+						//loads JSON file from the EU
+
+							response = await fetch(finalString);
+							jsonData = await response.json();
+							//jsonData = JSON.parse(jsonData);
+							console.log(jsonData);
+
+						if(jsonData.teams[0].name == t1abr){
+							t1g7otscore = jsonData.teams[0].score;
+							t2g7otscore	= jsonData.teams[1].score;
+						}else{
+							t1g7otscore = jsonData.teams[1].score;
+							t2g7otscore	= jsonData.teams[0].score;
+						}
+
+					}//end of OT if
 			}
 
 		}//end of else
 
+		computeAgg();
 
 	})();
 }
@@ -3013,26 +5900,34 @@ function generateText(){
 
 
 
-	g1t1agg = +t1g1h1score+ +t1g1h2score + +t1g1otscore;
-	g1t2agg = +t2g1h1score+ +t2g1h2score + +t2g1otscore;
 
-	g2t1agg = +t1g2h1score+ +t1g2h2score + +t1g2otscore;
-	g2t2agg = +t2g2h1score+ +t2g2h2score + +t2g2otscore;
 
-	g3t1agg = +t1g3h1score+ +t1g3h2score + +t1g3otscore;
-	g3t2agg = +t2g3h1score+ +t2g3h2score + +t2g3otscore;
 
-	g4t1agg = +t1g4h1score+ +t1g4h2score + +t1g4otscore;
-	g4t2agg = +t2g4h1score+ +t2g4h2score + +t2g4otscore;
+	//drawText();
+}
 
-	g5t1agg = +t1g5h1score+ +t1g5h2score + +t1g5otscore;
-	g5t2agg = +t2g5h1score+ +t2g5h2score + +t2g5otscore;
+function computeAgg(){
 
-	g6t1agg = +t1g6h1score+ +t1g6h2score + +t1g6otscore;
-	g6t2agg = +t2g6h1score+ +t2g6h2score + +t2g6otscore;
+	g1t1agg = t1g1h1score+ t1g1h2score +t1g1otscore;
+	g1t2agg = t2g1h1score+ t2g1h2score +t2g1otscore;
 
-	g7t1agg = +t1g7h1score+ +t1g7h2score + +t1g7otscore;
-	g7t2agg = +t2g7h1score+ +t2g7h2score + +t2g7otscore;
+	g2t1agg = t1g2h1score+ t1g2h2score +t1g2otscore;
+	g2t2agg = t2g2h1score+ t2g2h2score +t2g2otscore;
+
+	g3t1agg = t1g3h1score+ t1g3h2score +t1g3otscore;
+	g3t2agg = t2g3h1score+ t2g3h2score +t2g3otscore;
+
+	g4t1agg = t1g4h1score +t1g4h2score  +t1g4otscore;
+	g4t2agg = t2g4h1score +t2g4h2score  +t2g4otscore;
+
+	g5t1agg = t1g5h1score +t1g5h2score +t1g5otscore;
+	g5t2agg = t2g5h1score +t2g5h2score +t2g5otscore;
+
+	g6t1agg = t1g6h1score +t1g6h2score  +t1g6otscore;
+	g6t2agg = t2g6h1score +t2g6h2score  +t2g6otscore;
+
+	g7t1agg = t1g7h1score +t1g7h2score  +t1g7otscore;
+	g7t2agg = t2g7h1score +t2g7h2score +t2g7otscore;
 
 
 
@@ -3135,7 +6030,6 @@ function generateText(){
 		serieswint2abr = "**"+t2abr+"**";
 		serieswint1abr = t1abr;
 	}
-
 	if(document.getElementById("g1ot").checked){
 		g1otstring ="[**G1OT**]("+g1oteulink+")";
 	}
@@ -3178,15 +6072,12 @@ function generateText(){
 	else{
 		g7otstring = "";
 	}
+
 	drawPic();
 	share();
-	//drawText();
 }
 
-
-
 function drawText(){
-	console.log("")
 	if(plyoff == 1){
 		 if(gamesP == 2){
 			t1seriesagg = g1t1agg+g2t1agg+g3t1agg+g4t1agg+g5t1agg+g6t1agg+g7t1agg;
