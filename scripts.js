@@ -2412,6 +2412,7 @@ function generatePic(){
 
 
 function getScoresFromEu(){
+	(async () => {
 	let baseUrl = "https://tagpro.eu/data/"
 	if(plyoff == 1){
 		//get scores from eu if playoffs are enabled
@@ -2436,7 +2437,7 @@ function getScoresFromEu(){
 			splitUrl = g1h1eulink.slice(18,40);
 			finalString = baseUrl.concat(splitUrl);
 			//loads JSON file from the EU
-			(async () => {
+
 				response = await fetch(finalString);
 				jsonData = await response.json();
 				console.log(jsonData);
@@ -2452,13 +2453,13 @@ function getScoresFromEu(){
 				t1g1h1score = jsonData.teams[1].score;
 				t2g1h1score = jsonData.teams[0].score;
 			}
-			})();
+
 			//get half 2 scores from game 1
 		//GAME 1 HALF 2
 			splitUrl = g1h2eulink.slice(18,40);
 			finalString = baseUrl.concat(splitUrl);
 			//loads JSON file from the EU
-			(async () => {
+
 				response = await fetch(finalString);
 				jsonData = await response.json();
 				console.log(jsonData);
@@ -2473,14 +2474,14 @@ function getScoresFromEu(){
 				t1g1h2score = jsonData.teams[1].score;
 				t2g1h2score = jsonData.teams[0].score;
 			}
-			})();
+
 		//get OT scores from game 1
 		console.log(g1oteulink);
 			if(g1oteulink != 0){
 				splitUrl = g1oteulink.slice(18,40);
 				finalString = baseUrl.concat(splitUrl);
 				//loads JSON file from the EU
-				(async () => {
+
 					let response = await fetch(finalString);
 					let jsonData = await response.json();
 					console.log(jsonData);
@@ -2492,7 +2493,7 @@ function getScoresFromEu(){
 					t1g1otscore = jsonData.teams[1].score;
 					t2g1otscore	= jsonData.teams[0].score;
 				}
-				})();
+
 			}//end of OT if
 
 		//GAME 2
@@ -2500,7 +2501,7 @@ function getScoresFromEu(){
 			splitUrl = g2h1eulink.slice(18,40);
 			finalString = baseUrl.concat(splitUrl);
 			//loads JSON file from the EU
-			(async () => {
+
 				response = await fetch(finalString);
 				jsonData = await response.json();
 				console.log(jsonData);
@@ -2516,13 +2517,13 @@ function getScoresFromEu(){
 				t1g2h1score = jsonData.teams[1].score;
 				t2g2h1score = jsonData.teams[0].score;
 			}
-			})();
+
 			//get half 2 scores from game 1
 		//GAME 2 HALF 2
 			splitUrl = g2h2eulink.slice(18,40);
 			finalString = baseUrl.concat(splitUrl);
 			//loads JSON file from the EU
-			(async () => {
+
 				response = await fetch(finalString);
 				jsonData = await response.json();
 				console.log(jsonData);
@@ -2537,13 +2538,13 @@ function getScoresFromEu(){
 				t1g2h2score = jsonData.teams[1].score;
 				t2g2h2score = jsonData.teams[0].score;
 			}
-			})();
+
 		//get OT scores from game 2
 			if(g2oteulink != 0){
 				splitUrl = g2oteulink.slice(18,40);
 				finalString = baseUrl.concat(splitUrl);
 				//loads JSON file from the EU
-				(async () => {
+
 					let response = await fetch(finalString);
 					let jsonData = await response.json();
 					console.log(jsonData);
@@ -2555,7 +2556,7 @@ function getScoresFromEu(){
 					t1g2otscore = jsonData.teams[1].score;
 					t2g2otscore	= jsonData.teams[0].score;
 				}
-				})();
+
 			}//end of OT if
 
 		}else if(gamesP == 3){
@@ -2573,7 +2574,7 @@ function getScoresFromEu(){
 	}//end of else
 
 
-
+})();
 }//end of function
 
 function generateText(){
@@ -3009,7 +3010,7 @@ function generateText(){
 	//Generate scores here
 	getScoresFromEu();
 
-	wait(3000);
+	wait(2000);
 
 	g1t1agg = +t1g1h1score+ +t1g1h2score + +t1g1otscore;
 	g1t2agg = +t2g1h1score+ +t2g1h2score + +t2g1otscore;
