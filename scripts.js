@@ -1,5 +1,5 @@
 //Scripts n shit
-console.log("the new one");
+console.log("the new one 1");
 var gamesP;
 var imglink;
 
@@ -2532,12 +2532,12 @@ function getScoresFromEu(){
 
 			if(jsonData.teams[0].name == t1abr){
 				//team 0 for game is team 1
-				t1g2h2score = parseInt(jsonData.teams[0].score);
-				t2g2h2score = parseInt(jsonData.teams[1].score);
+				await t1g2h2score = parseInt(jsonData.teams[0].score);
+				await t2g2h2score = parseInt(jsonData.teams[1].score);
 			}else{
 				//team 0 for game is team 2
-				t1g2h2score = parseInt(jsonData.teams[1].score);
-				t2g2h2score = parseInt(jsonData.teams[0].score);
+				await t1g2h2score = parseInt(jsonData.teams[1].score);
+				await t2g2h2score = parseInt(jsonData.teams[0].score);
 			}
 
 		//get OT scores from game 2
@@ -2551,11 +2551,11 @@ function getScoresFromEu(){
 					console.log(jsonData);
 
 				if(jsonData.teams[0].name == t1abr){
-					t1g2otscore = parseInt(jsonData.teams[0].score);
-					t2g2otscore	= parseInt(jsonData.teams[1].score);
+					await t1g2otscore = parseInt(jsonData.teams[0].score);
+					await t2g2otscore	= parseInt(jsonData.teams[1].score);
 				}else{
-					t1g2otscore = parseInt(jsonData.teams[1].score);
-					t2g2otscore	= parseInt(jsonData.teams[0].score);
+					await t1g2otscore = parseInt(jsonData.teams[1].score);
+					await t2g2otscore	= parseInt(jsonData.teams[0].score);
 				}
 
 			}//end of OT if
