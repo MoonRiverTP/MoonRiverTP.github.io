@@ -3009,7 +3009,7 @@ function generateText(){
 	//Generate scores here
 	getScoresFromEu();
 
-
+	wait(3000);
 
 	g1t1agg = +t1g1h1score+ +t1g1h2score + +t1g1otscore;
 	g1t2agg = +t2g1h1score+ +t2g1h2score + +t2g1otscore;
