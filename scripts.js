@@ -5729,7 +5729,7 @@ function generateText(){
 
 		//game 3
 	//	g3mapname = document.getElementById("g3m").value;
-	/	//half1
+		//half1
 	//	t1g3h1score = document.getElementById("t1g3h1").value;
 	//	t2g3h1score = document.getElementById("t2g3h1").value;
 		g3h1eulink = document.getElementById("g3h1eu").value;
